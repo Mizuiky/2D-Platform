@@ -159,8 +159,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 134.25}
-  m_SizeDelta: {x: 1194.7, y: 196}
+  m_AnchoredPosition: {x: -617, y: 506}
+  m_SizeDelta: {x: 428.3, y: 796.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &128190755
 MonoBehaviour:
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 128190753}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -180,9 +180,9 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -76
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_Spacing: 115
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
   - {fileID: 807961011}
   - {fileID: 1793922220}
   _duration: 1
-  _delay: 0.5
+  _delay: 0.3
   ease: 27
 --- !u!1 &279791469
 GameObject:
@@ -902,7 +902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5040596842613108481, guid: 119e38f419ff2804bace927a5d5a3e23, type: 3}
       propertyPath: m_Name
-      value: PFB_Credits
+      value: PFB_About
       objectReference: {fileID: 0}
     - target: {fileID: 6027264070932722287, guid: 119e38f419ff2804bace927a5d5a3e23, type: 3}
       propertyPath: m_Pivot.x
@@ -990,7 +990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8644793607588185414, guid: 119e38f419ff2804bace927a5d5a3e23, type: 3}
       propertyPath: m_text
-      value: Credits
+      value: About
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 119e38f419ff2804bace927a5d5a3e23, type: 3}

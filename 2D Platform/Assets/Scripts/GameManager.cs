@@ -32,12 +32,6 @@ public class GameManager : Singleton<GameManager>
         _currentPlayer.transform.position = startPoint.transform.position;
     }
 
-    void Start()
-    {
-        
-    }
-
-
     void Update()
     {
         
