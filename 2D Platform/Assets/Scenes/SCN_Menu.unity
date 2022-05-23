@@ -359,7 +359,7 @@ MonoBehaviour:
   - {fileID: 807961011}
   - {fileID: 1793922220}
   _duration: 1
-  _delay: 0.3
+  _delay: 0.5
   ease: 27
 --- !u!1 &279791469
 GameObject:

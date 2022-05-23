@@ -40,6 +40,10 @@ public class MenuButtonsManager : MonoBehaviour
         {
             buttons[i].SetActive(true);
             buttons[i].transform.DOScale(1, _duration).SetDelay(i *_delay).SetEase(ease);
+
+            //using coroutine will not make the same efect here, set delay need to be first and the ease before it finished
+            //usign the i will make the next animation takes more time to be finished thats why when we play, all the animations dont be in the same time
+
         }
     }
 }
