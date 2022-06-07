@@ -1,21 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using System.Threading.Tasks;
 
 public class Player : MonoBehaviour
 {
-    #region PrivateFields
+    #region Serializable Fields
 
-    private Rigidbody2D _body;
-
-    private Vector2 _velocity;
-    private Vector2 _friccion = new Vector2(-.1f, 0);
-
-    private bool _isJumping = false;
-    private bool isRunning = false;
-
-    private float _currentSpeed;
-
+    [Header("Speed Setup")]
     [SerializeField]
     private int _jumpForce;
     [SerializeField]
@@ -23,25 +16,73 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speedRun;
 
+    [Header("Animation Setup")]
+    [SerializeField]
+    private float _jumpScaleX;
+    [SerializeField]
+    private float _jumpScaleY;
+    [SerializeField]
+    private float _groundScaleY;
+    [SerializeField]
+    private Ease _ease;
+    [SerializeField]
+    private float _duration;
+    [SerializeField]
+    private float _groundScaleDuration;
+
+    [Header("GroundCheck")]
+    [SerializeField]
+    private Transform _groundCheck;
+    [SerializeField]
+    private LayerMask _groundLayer;
+
     #endregion
+
+    #region PrivateFields
+
+    private Rigidbody2D _rb;
+
+    private Vector2 _velocity;
+    //private Vector2 _friccion = new Vector2(-.1f, 0);
+
+    private bool _isJumping = false;
+    private bool _isRunning = false;
+
+    private float _currentSpeed;
+
+    private bool isGrounded;
+
+    #endregion
+
+
 
     void Start()
     {
-        _body = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
     
     void Update()
     {
-        Jump();
-        Move();     
+        HandleInput();
+        SetCurrentSpeed();
     }
 
-    private void Move()
+    private void FixedUpdate()
     {
-        isRunning = Input.GetKey(KeyCode.Z);
-        _currentSpeed = isRunning ? _speedRun : _speed;
+        isGrounded = IsGrounded();
 
-        _velocity = new Vector2(0, _body.velocity.y);
+        Move();
+        Jump();
+    }
+    void OnDrawGizmosSelected()
+    {   
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(_groundCheck.position, .12f);
+    }
+
+    private void HandleInput()
+    {
+        _velocity = new Vector2(0, _rb.velocity.y);
 
         if (Input.GetKey(KeyCode.RightArrow))
             _velocity.x = _currentSpeed;
@@ -49,7 +90,8 @@ public class Player : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftArrow))
             _velocity.x = -_currentSpeed;
 
-        _body.velocity = _velocity;
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            _isJumping = true;
 
         //if (_body.velocity.x > 0)
         //    _body.velocity += _friccion;
@@ -57,11 +99,63 @@ public class Player : MonoBehaviour
         //    _body.velocity -= _friccion;
     }
 
-    private void Jump()
+    private void SetCurrentSpeed()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            _body.velocity = Vector2.up * _jumpForce;
-        }       
+        _isRunning = Input.GetKey(KeyCode.Z);
+        _currentSpeed = _isRunning ? _speedRun : _speed;
+    }
+
+    private void Move()
+    {
+        _rb.velocity = _velocity;
+    }
+
+    private async void Jump()
+    {
+        Debug.Log("grounded: " + isGrounded);
+        if (_isJumping)
+        {    
+            if (isGrounded)
+            {
+                Debug.Log("jump");
+                _isJumping = false;
+                _rb.velocity = Vector2.up * _jumpForce;
+                ResetScale();
+
+                KillAnimation();
+                HandleJumpScale();     
+               
+                await Task.Delay(600);
+
+                KillAnimation();
+                HandleGroundScale();
+            }
+        }    
+    }
+
+    private void HandleJumpScale()
+    {
+        _rb.transform.DOScaleY(_jumpScaleY, _duration).SetLoops(2, LoopType.Yoyo).SetEase(_ease);
+        _rb.transform.DOScaleX(_jumpScaleX, _duration).SetLoops(2, LoopType.Yoyo).SetEase(_ease);
+    }
+
+    public void HandleGroundScale()
+    {
+        _rb.transform.DOScaleY(_groundScaleY, _groundScaleDuration).SetLoops(2, LoopType.Yoyo);
+    }
+
+    public void KillAnimation()
+    {
+        DOTween.Kill(_rb.transform);
+    }
+
+    private void ResetScale()
+    {
+        _rb.transform.localScale = Vector2.one;
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(_groundCheck.position, .12f, _groundLayer);
     }
 }
