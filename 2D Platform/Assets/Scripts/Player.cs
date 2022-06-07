@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    #region PrivateFields
+
     private Rigidbody2D _body;
 
-    private Vector2 _diretion;
     private Vector2 _velocity;
+    private Vector2 _friccion = new Vector2(-.1f, 0);
+
+    private bool _isJumping = false;
+    private bool isRunning = false;
+
+    private float _currentSpeed;
 
     [SerializeField]
+    private int _jumpForce;
+    [SerializeField]
     private float _speed;
+    [SerializeField]
+    private float _speedRun;
+
+    #endregion
 
     void Start()
     {
@@ -19,35 +32,36 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        SetInput();
-    }
-    private void FixedUpdate()
-    {
-        Move();
+        Jump();
+        Move();     
     }
 
-
-    private void SetInput()
-    {      
-        if (Input.GetKey(KeyCode.RightArrow))
-            _diretion = Vector2.right;
-
-        else if (Input.GetKey(KeyCode.LeftArrow))
-            _diretion = -Vector2.right;
-
-        if (Input.GetKey(KeyCode.UpArrow))
-            _diretion = Vector2.up;         
-    }
-
-  
     private void Move()
     {
-        if(_diretion != Vector2.zero)
-        {
-            _velocity = _diretion * _speed;
+        isRunning = Input.GetKey(KeyCode.Z);
+        _currentSpeed = isRunning ? _speedRun : _speed;
 
-            _body.MovePosition(_body.position + _velocity * Time.deltaTime);
-            _diretion = Vector3.zero;
-        }        
+        _velocity = new Vector2(0, _body.velocity.y);
+
+        if (Input.GetKey(KeyCode.RightArrow))
+            _velocity.x = _currentSpeed;
+
+        else if (Input.GetKey(KeyCode.LeftArrow))
+            _velocity.x = -_currentSpeed;
+
+        _body.velocity = _velocity;
+
+        //if (_body.velocity.x > 0)
+        //    _body.velocity += _friccion;
+        //else if (_body.velocity.x < 0)
+        //    _body.velocity -= _friccion;
+    }
+
+    private void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            _body.velocity = Vector2.up * _jumpForce;
+        }       
     }
 }
