@@ -48,9 +48,9 @@ public class Player : MonoBehaviour
     private bool _isJumping = false;
     private bool _isRunning = false;
 
-    private float _currentSpeed;
-
     private bool isGrounded;
+
+    private float _currentSpeed;
 
     #endregion
 
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftArrow))
             _velocity.x = -_currentSpeed;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.Space))
             _isJumping = true;
 
         //if (_body.velocity.x > 0)
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
 
     private void SetCurrentSpeed()
     {
-        _isRunning = Input.GetKey(KeyCode.Z);
+        _isRunning = Input.GetKey(KeyCode.LeftShift);
         _currentSpeed = _isRunning ? _speedRun : _speed;
     }
 
@@ -112,12 +112,10 @@ public class Player : MonoBehaviour
 
     private async void Jump()
     {
-        Debug.Log("grounded: " + isGrounded);
         if (_isJumping)
         {    
             if (isGrounded)
             {
-                Debug.Log("jump");
                 _isJumping = false;
                 _rb.velocity = Vector2.up * _jumpForce;
                 ResetScale();
