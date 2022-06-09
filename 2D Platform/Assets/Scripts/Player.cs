@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     private float _duration;
     [SerializeField]
     private float _groundScaleDuration;
+    [SerializeField]
+    private float _runAnimationSpeed;
 
     [Header("GroundCheck")]
     [SerializeField]
@@ -42,42 +44,56 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D _rb;
 
+    private PlayerAnimation _playerAnimation;
+
     private Vector2 _velocity;
     //private Vector2 _friccion = new Vector2(-.1f, 0);
 
     private bool _isJumping = false;
     private bool _isRunning = false;
-
-    private bool isGrounded;
+    private bool _isGrounded;
 
     private float _currentSpeed;
 
+    private bool _isDead;
+
     #endregion
 
-
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(_groundCheck.position, .25f);
+    }
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _playerAnimation = GetComponentInChildren<PlayerAnimation>();
+
+        Init();
+    }
+
+    private void Init()
+    {       
+        _isDead = false;
+        HealthBase.OnPlayerDeath += OnDeath;
     }
     
     void Update()
     {
-        HandleInput();
-        SetCurrentSpeed();
+        if(!_isDead)
+        {
+            HandleInput();
+            SetCurrentSpeed();
+        }    
     }
 
     private void FixedUpdate()
     {
-        isGrounded = IsGrounded();
+        _isGrounded = IsGrounded();
 
         Move();
         Jump();
-    }
-    void OnDrawGizmosSelected()
-    {   
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(_groundCheck.position, .12f);
     }
 
     private void HandleInput()
@@ -85,11 +101,25 @@ public class Player : MonoBehaviour
         _velocity = new Vector2(0, _rb.velocity.y);
 
         if (Input.GetKey(KeyCode.RightArrow))
+        {
             _velocity.x = _currentSpeed;
+            _rb.transform.localScale = new Vector3(1, 1, 1);
 
+            _playerAnimation.CallRunAnimation(true);
+        }
         else if (Input.GetKey(KeyCode.LeftArrow))
+        {
             _velocity.x = -_currentSpeed;
+            _rb.transform.localScale = new Vector3(-1, 1, 1);
 
+            _playerAnimation.CallRunAnimation(true);
+        }
+        else
+        {
+            ResetScale();
+            _playerAnimation.CallRunAnimation(false);
+        }
+           
         if (Input.GetKeyDown(KeyCode.Space))
             _isJumping = true;
 
@@ -101,7 +131,13 @@ public class Player : MonoBehaviour
 
     private void SetCurrentSpeed()
     {
-        _isRunning = Input.GetKey(KeyCode.LeftShift);
+        _isRunning = Input.GetKey(KeyCode.Z);
+
+        if (_isRunning)
+            _playerAnimation.SetAnimationSpeed(_runAnimationSpeed);
+        else
+            _playerAnimation.SetAnimationSpeed(1f);
+
         _currentSpeed = _isRunning ? _speedRun : _speed;
     }
 
@@ -110,31 +146,30 @@ public class Player : MonoBehaviour
         _rb.velocity = _velocity;
     }
 
-    private async void Jump()
+    private void Jump()
     {
-        if (_isJumping)
-        {    
-            if (isGrounded)
-            {
-                _isJumping = false;
-                _rb.velocity = Vector2.up * _jumpForce;
-                ResetScale();
+        _playerAnimation.CallJumpAnimation(_isJumping, _isGrounded);
 
-                KillAnimation();
-                HandleJumpScale();     
-               
-                await Task.Delay(600);
+        if (_isJumping && _isGrounded)
+        {
+            _isJumping = false;
+            _rb.velocity = Vector2.up * _jumpForce;
+            
+            ResetScale();
 
-                KillAnimation();
-                HandleGroundScale();
-            }
+            KillAnimation();
+            HandleJumpScale();         
         }    
     }
 
     private void HandleJumpScale()
     {
-        _rb.transform.DOScaleY(_jumpScaleY, _duration).SetLoops(2, LoopType.Yoyo).SetEase(_ease);
-        _rb.transform.DOScaleX(_jumpScaleX, _duration).SetLoops(2, LoopType.Yoyo).SetEase(_ease);
+        if (_rb.transform.localScale.x > 0)
+            _rb.transform.DOScaleX(_jumpScaleX, _duration).SetLoops(2, LoopType.Yoyo).SetEase(_ease);
+        else
+            _rb.transform.DOScaleX(-_jumpScaleX, _duration).SetLoops(2, LoopType.Yoyo).SetEase(_ease);
+
+        _rb.transform.DOScaleY(_jumpScaleY, _duration).SetLoops(2, LoopType.Yoyo).SetEase(_ease);      
     }
 
     public void HandleGroundScale()
@@ -149,11 +184,19 @@ public class Player : MonoBehaviour
 
     private void ResetScale()
     {
-        _rb.transform.localScale = Vector2.one;
+        if (_rb.transform.localScale.x > 0)
+            _rb.transform.localScale = new Vector3(1, 1, 1);
+        else
+            _rb.transform.localScale = new Vector3(-1, 1, 1);  
     }
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(_groundCheck.position, .12f, _groundLayer);
+        return Physics2D.OverlapCircle(_groundCheck.position, .25f, _groundLayer);
+    }
+
+    private void OnDeath()
+    {
+        _isDead = false;
     }
 }
