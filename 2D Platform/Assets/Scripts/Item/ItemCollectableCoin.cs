@@ -9,7 +9,7 @@ public class ItemCollectableCoin : ItemCollectableBase
 
     protected override void Collect()
     {
-        ItemManager.instance.AddCoins(_coinPoints);
+        ItemManager.Instance.AddCoins(_coinPoints);
 
         base.Collect();
     }
