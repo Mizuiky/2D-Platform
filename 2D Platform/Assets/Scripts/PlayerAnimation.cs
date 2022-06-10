@@ -23,15 +23,15 @@ public class PlayerAnimation : MonoBehaviour
         _animator = GetComponent<Animator>();
         _player = GetComponentInParent<Player>();
 
-        HealthBase.OnPlayerDeath += CallDeadAnimation;
+        HealthBase.OnPlayerDeath += CallDeathAnimation;
     }
 
     private void OnDisable()
     {
-        HealthBase.OnPlayerDeath -= CallDeadAnimation;
+        HealthBase.OnPlayerDeath -= CallDeathAnimation;
     }
 
-    public void CallDeadAnimation()
+    public void CallDeathAnimation()
     {
         _animator.SetBool(_boolIsDead, true);
     }

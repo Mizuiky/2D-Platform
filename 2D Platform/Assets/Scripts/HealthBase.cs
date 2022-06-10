@@ -65,6 +65,7 @@ public class HealthBase : MonoBehaviour
 
     private void Kill()
     {
+        Debug.Log("dead");
         _isDeath = true;
 
         OnPlayerDeath?.Invoke();

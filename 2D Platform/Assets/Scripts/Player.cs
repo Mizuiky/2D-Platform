@@ -47,6 +47,8 @@ public class Player : MonoBehaviour
     private PlayerAnimation _playerAnimation;
 
     private Vector2 _velocity;
+    private Vector2 _resetVelocity = Vector2.zero;
+
     //private Vector2 _friccion = new Vector2(-.1f, 0);
 
     private bool _isJumping = false;
@@ -78,14 +80,19 @@ public class Player : MonoBehaviour
         _isDead = false;
         HealthBase.OnPlayerDeath += OnDeath;
     }
-    
+
+    private void OnDisable()
+    {
+        HealthBase.OnPlayerDeath -= OnDeath;
+    }
+
     void Update()
     {
         if(!_isDead)
         {
             HandleInput();
-            SetCurrentSpeed();
-        }    
+            SetCurrentSpeed();              
+        }
     }
 
     private void FixedUpdate()
@@ -119,9 +126,11 @@ public class Player : MonoBehaviour
             ResetScale();
             _playerAnimation.CallRunAnimation(false);
         }
-           
+
         if (Input.GetKeyDown(KeyCode.Space))
+        {
             _isJumping = true;
+        }
 
         //if (_body.velocity.x > 0)
         //    _body.velocity += _friccion;
@@ -197,6 +206,13 @@ public class Player : MonoBehaviour
 
     private void OnDeath()
     {
-        _isDead = false;
+        _isDead = true;
+
+        _velocity = _resetVelocity;
+
+        KillAnimation();
+
+        ResetScale();
+        _playerAnimation.CallRunAnimation(false);
     }
 }
