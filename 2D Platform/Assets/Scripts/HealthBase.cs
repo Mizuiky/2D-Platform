@@ -9,18 +9,14 @@ public class HealthBase : MonoBehaviour
     [SerializeField]
     private int startLife = 10;
     [SerializeField]
+    private int _currentLife;
+    [SerializeField]
     private float _delayToDestroy = 0.3f;
     [SerializeField]
     private bool _destroyOnKill = true;
     [SerializeField]
-    private Color _deathColor;
-
-
-    private Color _entityColor;
-    private SpriteRenderer[] _entitySprites;
-
-    private int _currentLife;
-
+    private EntityColorTint _entityColorTint;
+   
     private bool _isDeath;
 
     #region Events
@@ -28,6 +24,12 @@ public class HealthBase : MonoBehaviour
     public static event Action OnPlayerDeath;
 
     #endregion
+
+    private void Start()
+    {
+        if (_entityColorTint == null)
+            _entityColorTint = gameObject.GetComponent<EntityColorTint>();
+    }
 
     private void Awake()
     {
@@ -38,16 +40,6 @@ public class HealthBase : MonoBehaviour
     {
         _currentLife = startLife;
         _isDeath = false;
-
-        #region Initializing Entity Sprites Color
-
-        _entitySprites = gameObject.GetComponentsInChildren<SpriteRenderer>();
-
-        if (_entitySprites.Length > 0)
-        {
-            _entityColor = _entitySprites[0].color;
-        }
-        #endregion
     }
 
     public void Damage(int damage)
@@ -57,7 +49,7 @@ public class HealthBase : MonoBehaviour
 
         _currentLife -= damage;
 
-        ChangeColorOnDamage();
+        _entityColorTint.ChangeColor();
 
         if (_currentLife <= 0)
             Kill();  
@@ -72,28 +64,5 @@ public class HealthBase : MonoBehaviour
 
         if (_destroyOnKill)
             Destroy(gameObject, _delayToDestroy);
-    }
-
-    private void ChangeColorOnDamage()
-    {     
-        if(_entitySprites != null)
-            StartCoroutine(DamageColorTint());
-    }
-
-    private IEnumerator DamageColorTint()
-    {
-        ChangeAllSpriteColors(_deathColor);
-
-        yield return new WaitForSeconds(.1f);
-
-        ChangeAllSpriteColors(_entityColor);
-    }
-
-    private void ChangeAllSpriteColors(Color color)
-    {
-        foreach (SpriteRenderer sprite in _entitySprites)
-        {
-            sprite.color = color;
-        }
     }
 }
