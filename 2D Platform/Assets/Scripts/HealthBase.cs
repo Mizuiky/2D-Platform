@@ -6,6 +6,7 @@ using UnityEngine;
 public class HealthBase : MonoBehaviour
 {
     [Header("Health Fields")]
+
     [SerializeField]
     private int startLife = 10;
     [SerializeField]

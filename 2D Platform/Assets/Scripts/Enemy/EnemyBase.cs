@@ -35,14 +35,17 @@ public class EnemyBase : MonoBehaviour
         var health = collision.gameObject.GetComponent<HealthBase>();
 
         if (health != null)
-        {
             health.Damage(_damage);
-        }
     }
 
     private void Attack()
     {
         _enemyAnimation.CallAttack();
+    }
+
+    public void Damage(int amount)
+    {
+
     }
 
     private void OnDeath()
