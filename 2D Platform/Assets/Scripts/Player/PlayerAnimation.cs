@@ -36,16 +36,15 @@ public class PlayerAnimation : AnimationBase
     {
         _player = GetComponentInParent<Player>();  
     }
-
-    private void OnDisable()
-    {
-        HealthBase.OnPlayerDeath -= CallDeath;
-    }
-
     public override void Init()
     {
         base.Init();
         HealthBase.OnPlayerDeath += CallDeath;
+    }
+
+    private void OnDisable()
+    {
+        HealthBase.OnPlayerDeath -= CallDeath;
     }
 
     public void CallJump(bool isJumping, bool isGrounded)

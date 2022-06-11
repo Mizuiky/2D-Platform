@@ -8,27 +8,26 @@ public class EnemyBase : MonoBehaviour
     [SerializeField]
     private int _damage = 10;
 
-    [Header("Animation Fields")]
-
-    [SerializeField]
-    private float yScale;
-    [SerializeField]
-    private float _duration;
-    [SerializeField]
-    private Ease _ease;
-
     private Rigidbody2D _rb;
+
+    private EnemyAnimation _enemyAnimation;
+
+    public Rigidbody2D Rb
+    {
+        get => _rb;
+    }
 
     private void Start()
     {
-        _rb = gameObject.GetComponent<Rigidbody2D>();
-
-        EnemyAnimation();
+        Init();
     }
 
-    private void EnemyAnimation()
+    private void Init()
     {
-        _rb.transform.DOScaleY(yScale, _duration).SetLoops(-1, LoopType.Yoyo).SetEase(_ease);
+        _rb = GetComponent<Rigidbody2D>();
+        _enemyAnimation = GetComponentInChildren<EnemyAnimation>();
+
+        _enemyAnimation.IdleAnimation();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -41,8 +40,13 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void Attack()
     {
-        DOTween.Kill(_rb.transform);
+        _enemyAnimation.CallAttack();
+    }
+
+    private void OnDeath()
+    {
+        _enemyAnimation.KillTweenAnimation(_rb);
     }
 }
