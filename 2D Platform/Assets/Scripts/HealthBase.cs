@@ -14,7 +14,8 @@ public class HealthBase : MonoBehaviour
     private float _delayToDestroy = 0.3f;
     [SerializeField]
     private bool _destroyOnKill = true;
-    [SerializeField]
+
+
     private EntityColorTint _entityColorTint;
    
     private bool _isDeath;
@@ -57,7 +58,6 @@ public class HealthBase : MonoBehaviour
 
     private void Kill()
     {
-        Debug.Log("dead");
         _isDeath = true;
 
         OnPlayerDeath?.Invoke();

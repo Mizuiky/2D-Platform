@@ -21,6 +21,5 @@ public class ItemCollectableBase : MonoBehaviour
         OnCollect();
     }
 
-
     protected virtual void OnCollect() { }
 }
