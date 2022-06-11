@@ -7,7 +7,7 @@ public class GunBase : MonoBehaviour
     [Header("Shoot Fields Informations")]
 
     [SerializeField]
-    private Transform _playerReference;
+    private Transform _playerSideReference;
     [SerializeField]
     private Transform _shootPosition;
     [SerializeField]
@@ -50,10 +50,10 @@ public class GunBase : MonoBehaviour
 
         if(obj != null)
         {
-            var projectil = obj.AddComponent<ProjectilBase>();
+            var projectil = obj.GetComponent<ProjectilBase>();
 
             if (projectil != null)
-                projectil.Init(_shootPosition, _playerReference);
+                projectil.Init(_shootPosition, _playerSideReference);
         }              
     }
 }

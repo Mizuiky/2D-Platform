@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648e63ccf3cb91d4dbe6eb68a663427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerReference: {fileID: 2376913723713676585}
+  _playerSideReference: {fileID: 2376913723713676587}
   _shootPosition: {fileID: 79803195}
   _delayBetweenShoots: 0.3
 --- !u!1 &2376913723403426609

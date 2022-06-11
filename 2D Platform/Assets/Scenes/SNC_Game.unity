@@ -4395,9 +4395,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 600376141}
     m_Modifications:
     - target: {fileID: 235732930, guid: 4bff70564fa5c7a43baeaeb302bde7f6, type: 3}
-      propertyPath: _playerReference
-      value: 
-      objectReference: {fileID: 1360100241}
+      propertyPath: _delayBetweenShoots
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2376913723713676587, guid: 4bff70564fa5c7a43baeaeb302bde7f6, type: 3}
       propertyPath: m_RootOrder
       value: 3

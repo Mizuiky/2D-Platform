@@ -7,13 +7,14 @@ public class ProjectilBase : MonoBehaviour
     [SerializeField]
     private int _projectilDamage = 5;
     [SerializeField]
-    private float _speed = 0.50f;
-    [SerializeField]
     private float _timeToDeactivate = 2f;
+    [SerializeField]
+    private float _speed;
+
+    private Vector2 direction = new Vector2(1, 0);
 
     private Coroutine _currentCoroutine;
-
-    public Vector2 direction = new Vector2(1, 1);
+    private float _side = 1;
 
     private void Start()
     {
@@ -22,7 +23,7 @@ public class ProjectilBase : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(direction * _speed * Time.deltaTime);
+        transform.Translate(direction * _speed * Time.deltaTime * _side);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -35,10 +36,18 @@ public class ProjectilBase : MonoBehaviour
         Deactivate();
     }
 
-    public void Init(Transform shootPosition, Transform playerScale)
+    public void Init(Transform shootPosition, Transform playerSide)
     {
+        Debug.Log("shoot position" + shootPosition);
+        transform.position = shootPosition.position;
+
+        Debug.Log("projectil position" + transform.position);
+
+        _side = playerSide.localScale.x;
+
+        Debug.Log("side" + _side);
+
         gameObject.SetActive(true);
-        this.transform.position = shootPosition.position;
     }
 
     private void OnDisable()
