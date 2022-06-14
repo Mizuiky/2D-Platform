@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,6 @@ public class ItemCollectableCoin : ItemCollectableBase
     protected override void Collect()
     {
         ItemManager.Instance.AddCoins(_coinPoints);
-
         base.Collect();
     }
 

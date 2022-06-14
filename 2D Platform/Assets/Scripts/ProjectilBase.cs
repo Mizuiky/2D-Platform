@@ -31,21 +31,18 @@ public class ProjectilBase : MonoBehaviour
         var enemy = collision.gameObject.GetComponent<EnemyBase>();
 
         if(enemy != null)
-            enemy.Damage(_projectilDamage);
+        {
+            enemy.Damage(_projectilDamage);       
+        }
 
         Deactivate();
     }
 
     public void Init(Transform shootPosition, Transform playerSide)
     {
-        Debug.Log("shoot position" + shootPosition);
         transform.position = shootPosition.position;
 
-        Debug.Log("projectil position" + transform.position);
-
         _side = playerSide.localScale.x;
-
-        Debug.Log("side" + _side);
 
         gameObject.SetActive(true);
     }
