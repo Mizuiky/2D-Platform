@@ -23,7 +23,7 @@ public class HealthBase : MonoBehaviour
 
     #region Events
 
-    public static event Action OnPlayerDeath;
+    public Action OnDeath;
 
     #endregion
 
@@ -61,7 +61,7 @@ public class HealthBase : MonoBehaviour
     {
         _isDeath = true;
 
-        OnPlayerDeath?.Invoke();
+        OnDeath?.Invoke();
 
         if (_destroyOnKill)
             Destroy(gameObject, _delayToDestroy);

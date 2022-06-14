@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private LayerMask _groundLayer;
 
+    [SerializeField]
+    private HealthBase _health;
+
     #endregion
 
     #region PrivateFields
@@ -75,12 +78,12 @@ public class Player : MonoBehaviour
     private void Init()
     {       
         _isDead = false;
-        HealthBase.OnPlayerDeath += OnDeath;
+        _health.OnDeath += OnPlayerDeath;
     }
 
     private void OnDisable()
     {
-        HealthBase.OnPlayerDeath -= OnDeath;
+        _health.OnDeath -= OnPlayerDeath;
     }
 
     void Update()
@@ -181,7 +184,7 @@ public class Player : MonoBehaviour
         return Physics2D.OverlapCircle(_groundCheck.position, .25f, _groundLayer);
     }
 
-    private void OnDeath()
+    private void OnPlayerDeath()
     {
         _isDead = true;
 
@@ -190,6 +193,8 @@ public class Player : MonoBehaviour
         _playerAnimation.KillTweenAnimation(_rb);
 
         ResetScale();
+
         _playerAnimation.CallRun(false);
+        _playerAnimation.CallDeath();
     }
 }

@@ -210,6 +210,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  _health: {fileID: 2376913723375164125}
 --- !u!114 &2376913723375164125
 MonoBehaviour:
   m_ObjectHideFlags: 0

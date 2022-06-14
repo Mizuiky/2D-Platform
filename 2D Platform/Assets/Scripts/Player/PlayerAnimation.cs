@@ -39,12 +39,6 @@ public class PlayerAnimation : AnimationBase
     public override void Init()
     {
         base.Init();
-        HealthBase.OnPlayerDeath += CallDeath;
-    }
-
-    private void OnDisable()
-    {
-        HealthBase.OnPlayerDeath -= CallDeath;
     }
 
     public void CallJump(bool isJumping, bool isGrounded)

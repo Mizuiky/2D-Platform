@@ -3010,6 +3010,7 @@ GameObject:
   - component: {fileID: 1631505411}
   - component: {fileID: 1631505410}
   - component: {fileID: 1631505409}
+  - component: {fileID: 1631505413}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3098,6 +3099,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1631505413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631505408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fd28d0f9312c54f9499ed06a92ce24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hud: {fileID: 2051786526}
 --- !u!1 &1706798258
 GameObject:
   m_ObjectHideFlags: 0
@@ -4221,6 +4235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2051786525}
+  - component: {fileID: 2051786526}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -4248,6 +4263,19 @@ RectTransform:
   m_AnchoredPosition: {x: 480, y: -147.3797}
   m_SizeDelta: {x: 960, y: 294.7594}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2051786526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051786524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f511eb2e363ed8d438aeebe588130d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinPoints: {fileID: 655494490}
 --- !u!1 &2111047200
 GameObject:
   m_ObjectHideFlags: 0
@@ -4394,10 +4422,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 600376141}
     m_Modifications:
-    - target: {fileID: 235732930, guid: 4bff70564fa5c7a43baeaeb302bde7f6, type: 3}
-      propertyPath: _delayBetweenShoots
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 2376913723713676587, guid: 4bff70564fa5c7a43baeaeb302bde7f6, type: 3}
       propertyPath: m_RootOrder
       value: 3

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunBase : MonoBehaviour
 {
-    [Header("Shoot Fields Informations")]
+    [Header("Shoot Fields Information")]
 
     [SerializeField]
     private Transform _playerSideReference;
