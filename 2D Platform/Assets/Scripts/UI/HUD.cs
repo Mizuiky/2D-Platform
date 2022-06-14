@@ -7,7 +7,9 @@ using System.Text;
 public class HUD : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI _coinPoints;
+    private TextMeshProUGUI _coinText;
+    [SerializeField]
+    private SO_Int _coinPoints;
 
     private void Start()
     {
@@ -16,23 +18,16 @@ public class HUD : MonoBehaviour
 
     private void Init()
     {
-        ItemManager.Instance.OnCoinCollect += SetCoinPoints;
-
-        SetCoinPoints(0);
+        SetCoinPoints();
     }
 
-    private void OnDisable()
+    public void SetCoinPoints()
     {
-        ItemManager.Instance.OnCoinCollect -= SetCoinPoints;
-    }
-
-    public void SetCoinPoints(int points)
-    {
-        var pts = points.ToString();
+        var pts = _coinPoints.value.ToString();
 
         var builder = new StringBuilder();
-        builder.AppendFormat("X {0}", pts);
+        builder.AppendFormat(" X {0} ", pts);
 
-        _coinPoints.text = builder.ToString();
+        _coinText.text = builder.ToString();
     }
 }

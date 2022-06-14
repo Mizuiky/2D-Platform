@@ -7,24 +7,24 @@ using System;
 public class ItemManager : Singleton<ItemManager>
 {
     [SerializeField]
-    private int _coins;
+    private SO_Int _coins;
 
-    public delegate void OnCollect(int amount);
-    public OnCollect OnCoinCollect;
+    public Action OnCoinCollect;
 
-    void Start()
+    private void Start()
     {
         Reset();
     }
 
     private void Reset()
     {
-        _coins = 0;   
+        _coins.value = 0;
+        OnCoinCollect?.Invoke();
     }
 
     public void AddCoins(int amount = 1)
     {
-        _coins += amount;
-        OnCoinCollect?.Invoke(_coins);
+        _coins.value += amount;
+        OnCoinCollect?.Invoke();
     }
 }
