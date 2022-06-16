@@ -203,13 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b332a38b2890024583e5bf8842939ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 30
-  _speed: 20
-  _speedRun: 25
+  _playerSetup: {fileID: 11400000, guid: e085807fd509a3a4dabca9a6e506618b, type: 2}
   _groundCheck: {fileID: 2376913723403426614}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
   _health: {fileID: 2376913723375164125}
 --- !u!114 &2376913723375164125
 MonoBehaviour:
@@ -223,10 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d6220ea8c33d74fbbcb6fec688d074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLife: 30
-  _currentLife: 0
-  _delayToDestroy: 1
-  _destroyOnKill: 0
+  _health: {fileID: 11400000, guid: 6ee295d8cfb753d41b9cf74423e09cbd, type: 2}
+  _entityColorTint: {fileID: 1360100240}
 --- !u!114 &1360100240
 MonoBehaviour:
   m_ObjectHideFlags: 0

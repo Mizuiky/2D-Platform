@@ -141,10 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d6220ea8c33d74fbbcb6fec688d074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLife: 20
-  _currentLife: 0
-  _delayToDestroy: 1.3
-  _destroyOnKill: 1
+  _health: {fileID: 11400000, guid: 0b9483c07d08b3e41a4c9f96170d276b, type: 2}
+  _entityColorTint: {fileID: 1042013319}
 --- !u!114 &1042013319
 MonoBehaviour:
   m_ObjectHideFlags: 0
