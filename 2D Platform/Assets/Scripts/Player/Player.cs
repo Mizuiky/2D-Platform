@@ -8,23 +8,15 @@ public class Player : MonoBehaviour
 {
     #region Serializable Fields
 
-    [Header("Speed Setup")]
     [SerializeField]
-    private int _jumpForce;
-    [SerializeField]
-    private float _speed;
-    [SerializeField]
-    private float _speedRun;
+    private SO_PlayerSetup _playerSetup;
 
-    [Header("Animation Setup")]
-    
-    private float _runAnimationSpeed;
+    [Header("Animation Setup")] 
+    private float _runAnimationSpeed = 1.3f;
 
     [Header("GroundCheck")]
     [SerializeField]
     private Transform _groundCheck;
-    [SerializeField]
-    private LayerMask _groundLayer;
 
     [SerializeField]
     private HealthBase _health;
@@ -147,7 +139,7 @@ public class Player : MonoBehaviour
         else
             _playerAnimation.SetAnimationSpeed(1f);
 
-        _currentSpeed = _isRunning ? _speedRun : _speed;
+        _currentSpeed = _isRunning ? _playerSetup._speedRun : _playerSetup._speed;
     }
 
     private void Move()
@@ -162,7 +154,7 @@ public class Player : MonoBehaviour
         if (_isJumping && _isGrounded)
         {
             _isJumping = false;
-            _rb.velocity = Vector2.up * _jumpForce;
+            _rb.velocity = Vector2.up * _playerSetup._jumpForce;
             
             ResetScale();
 
@@ -181,7 +173,7 @@ public class Player : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(_groundCheck.position, .25f, _groundLayer);
+        return Physics2D.OverlapCircle(_groundCheck.position, .25f, _playerSetup._groundLayer);
     }
 
     private void OnPlayerDeath()
