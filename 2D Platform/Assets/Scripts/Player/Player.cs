@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Threading.Tasks;
+using System;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     #region Serializable Fields
 
     [SerializeField]
     private SO_PlayerSetup _playerSetup;
-
-    [Header("Animation Setup")] 
-    private float _runAnimationSpeed = 1.3f;
 
     [Header("GroundCheck")]
     [SerializeField]
@@ -53,6 +51,12 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region Events
+
+    public static Action OnPlayerDamaged;
+
+    #endregion
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -68,7 +72,7 @@ public class Player : MonoBehaviour
     }
 
     private void Init()
-    {       
+    {
         _isDead = false;
         _health.OnDeath += OnPlayerDeath;
     }
@@ -80,10 +84,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(!_isDead)
+        if (!_isDead)
         {
             HandleInput();
-            SetCurrentSpeed();              
+            SetCurrentSpeed();
         }
     }
 
@@ -135,7 +139,7 @@ public class Player : MonoBehaviour
         _isRunning = Input.GetKey(KeyCode.Z);
 
         if (_isRunning)
-            _playerAnimation.SetAnimationSpeed(_runAnimationSpeed);
+            _playerAnimation.SetAnimationSpeed(_playerAnimation.RunAnimation);
         else
             _playerAnimation.SetAnimationSpeed(1f);
 
@@ -153,14 +157,19 @@ public class Player : MonoBehaviour
 
         if (_isJumping && _isGrounded)
         {
-            _isJumping = false;
+            Debug.Log("is jumping " + _isJumping);
+
             _rb.velocity = Vector2.up * _playerSetup._jumpForce;
-            
+
+            Debug.Log("rb velocity " + _rb.velocity);
+
             ResetScale();
 
             _playerAnimation.KillTweenAnimation(_rb);
-            _playerAnimation.CallJumpScale();         
-        }    
+            _playerAnimation.CallJumpScale();
+
+            _isJumping = false;
+        }
     }
 
     private void ResetScale()
@@ -168,7 +177,7 @@ public class Player : MonoBehaviour
         if (_rb.transform.localScale.x > 0)
             _rb.transform.localScale = new Vector3(1, 1, 1);
         else
-            _rb.transform.localScale = new Vector3(-1, 1, 1);  
+            _rb.transform.localScale = new Vector3(-1, 1, 1);
     }
 
     private bool IsGrounded()
@@ -188,5 +197,10 @@ public class Player : MonoBehaviour
 
         _playerAnimation.CallRun(false);
         _playerAnimation.CallDeath();
+    }
+
+    public void OnDamage()
+    {
+        OnPlayerDamaged?.Invoke();
     }
 }

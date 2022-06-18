@@ -16,6 +16,8 @@ public class AnimationBase : MonoBehaviour, IAnimation
 
     private Animator _animator;
 
+    #region Properties
+
     public Animator Animator
     {
         get => _animator;
@@ -34,6 +36,8 @@ public class AnimationBase : MonoBehaviour, IAnimation
     {
         get => _attack;
     }
+
+    #endregion
 
     private void Awake()
     {
