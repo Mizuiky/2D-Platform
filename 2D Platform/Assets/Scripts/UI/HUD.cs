@@ -6,10 +6,18 @@ using System.Text;
 
 public class HUD : MonoBehaviour
 {
+    #region Serializable Fields
+
     [SerializeField]
     private TextMeshProUGUI _coinText;
+
     [SerializeField]
     private SO_Int _coinPoints;
+
+    [SerializeField]
+    private LifeController _lifeController;
+
+    #endregion
 
     private void Start()
     {
@@ -29,5 +37,15 @@ public class HUD : MonoBehaviour
         builder.AppendFormat(" X {0} ", pts);
 
         _coinText.text = builder.ToString();
+    }
+
+    public bool FillHeartContainer()
+    {
+        return _lifeController.FillHeart() ? true : false;
+    }
+
+    public bool HideHeartContainer()
+    {
+        return _lifeController.HideHeart();
     }
 }

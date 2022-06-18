@@ -5,13 +5,19 @@ using UnityEngine;
 
 public class HealthBase : MonoBehaviour
 {
-    #region Private Fields
+    #region Serializable Fields
 
     [SerializeField]
     private SO_Health _health;
 
     [SerializeField]
     private EntityColorTint _entityColorTint;
+
+    #endregion
+
+    #region Private Fields
+
+    private IDamageable _damageable;
 
     private int _currentLife;
 
@@ -25,20 +31,19 @@ public class HealthBase : MonoBehaviour
 
     #endregion
 
-    private void Start()
-    {
-        
-    }
-
     private void Awake()
     {
         Init();
     }
 
-    private void Init()
+    protected virtual void Init()
     {
         _currentLife = _health.startLife;
+
+        Debug.Log("start life" + _currentLife);
         _isDeath = false;
+
+        _damageable = GetComponent<IDamageable>();
     }
 
     public void Damage(int damage)
@@ -46,7 +51,12 @@ public class HealthBase : MonoBehaviour
         if (_isDeath)
             return;
 
-        _currentLife -= damage;
+        if (_damageable != null)
+        {
+            Debug.Log("current Life" + _currentLife);
+            _damageable.OnDamage();     
+            _currentLife -= damage;        
+        }
 
         _entityColorTint.ChangeColor();
 
@@ -62,5 +72,16 @@ public class HealthBase : MonoBehaviour
 
         if (_health._destroyOnKill)
             Destroy(gameObject, _health._delayToDestroy);
+    }
+
+    protected virtual void Heal(int amount)
+    {
+        Debug.Log("heal");
+        Debug.Log("current Life" + _currentLife);
+
+        _currentLife += amount;
+
+        Debug.Log("healed");
+        Debug.Log("current Life" + _currentLife);
     }
 }

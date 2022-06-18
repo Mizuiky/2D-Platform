@@ -37,7 +37,7 @@ public class ProjectilBase : MonoBehaviour
 
         if(enemy != null)
         {
-            enemy.Damage(_projectilSetup._projectilDamage);       
+            enemy.OnEnemyDamage(_projectilSetup._projectilDamage);       
         }
 
         Deactivate();

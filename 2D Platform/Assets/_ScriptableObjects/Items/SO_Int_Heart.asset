@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f2b5b055e5173545ab3c3931ea598a4, type: 3}
-  m_Name: SO_PlayerHealth
+  m_Script: {fileID: 11500000, guid: e752a36014f0a594cbe2576fdc8c3898, type: 3}
+  m_Name: SO_Int_Heart
   m_EditorClassIdentifier: 
-  startLife: 3
-  _delayToDestroy: 1
-  _destroyOnKill: 0
+  value: 1

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class UIController : MonoBehaviour
 {
@@ -9,21 +10,37 @@ public class UIController : MonoBehaviour
 
     private void Start()
     {
-        init();
+        Init();
     }
 
-    public void init()
+    public void Init()
     {
         ItemManager.Instance.OnCoinCollect += UpdateCoinPoints;
+        ItemManager.Instance.onFilledHeart += UpdateLifeContainer;
+
+        Player.OnPlayerDamaged += UpdateLifeOnDamage;
     }
 
     private void OnDisable()
     {
         ItemManager.Instance.OnCoinCollect -= UpdateCoinPoints;
+        ItemManager.Instance.onFilledHeart -= UpdateLifeContainer;
+
+        Player.OnPlayerDamaged -= UpdateLifeOnDamage;
     }
 
-    public void UpdateCoinPoints()
+    private void UpdateCoinPoints()
     {
         _hud.SetCoinPoints();
+    }
+
+    private bool UpdateLifeContainer()
+    {
+        return _hud.FillHeartContainer() ? true : false;     
+    }
+
+    private void UpdateLifeOnDamage()
+    {
+        _hud.HideHeartContainer();
     }
 }
