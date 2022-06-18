@@ -40,7 +40,6 @@ public class HealthBase : MonoBehaviour
     {
         _currentLife = _health.startLife;
 
-        Debug.Log("start life" + _currentLife);
         _isDeath = false;
 
         _damageable = GetComponent<IDamageable>();
@@ -53,7 +52,6 @@ public class HealthBase : MonoBehaviour
 
         if (_damageable != null)
         {
-            Debug.Log("current Life" + _currentLife);
             _damageable.OnDamage();     
             _currentLife -= damage;        
         }
@@ -76,12 +74,6 @@ public class HealthBase : MonoBehaviour
 
     protected virtual void Heal(int amount)
     {
-        Debug.Log("heal");
-        Debug.Log("current Life" + _currentLife);
-
         _currentLife += amount;
-
-        Debug.Log("healed");
-        Debug.Log("current Life" + _currentLife);
     }
 }

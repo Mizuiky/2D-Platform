@@ -157,11 +157,7 @@ public class Player : MonoBehaviour, IDamageable
 
         if (_isJumping && _isGrounded)
         {
-            Debug.Log("is jumping " + _isJumping);
-
             _rb.velocity = Vector2.up * _playerSetup._jumpForce;
-
-            Debug.Log("rb velocity " + _rb.velocity);
 
             ResetScale();
 
