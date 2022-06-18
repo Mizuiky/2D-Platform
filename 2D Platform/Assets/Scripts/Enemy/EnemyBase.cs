@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class EnemyBase : MonoBehaviour
+public class EnemyBase : MonoBehaviour, IDamageable
 {
     [SerializeField]
     private int _damage = 10;
@@ -55,14 +55,17 @@ public class EnemyBase : MonoBehaviour
             health.Damage(_damage);
     }
 
-    public void Damage(int amount)
+    public void OnEnemyDamage(int amount)
     {
         _health.Damage(amount);
     }
 
+    public void OnDamage() { /* particles of enemy damage */ }
+
     private void Attack()
     {
         _enemyAnimation.CallAttack();
+        //make enemy shot projectiles when player are in the enemy line/range of sight
     }
 
     private void OnEnemyDeath()
@@ -70,5 +73,5 @@ public class EnemyBase : MonoBehaviour
         _enemyAnimation.KillTweenAnimation(_rb);
 
         _enemyAnimation.CallDeath();
-    }
+    }  
 }
