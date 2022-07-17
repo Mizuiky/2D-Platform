@@ -7,12 +7,13 @@ public class ItemCollectableBase : MonoBehaviour
     [SerializeField]
     private string _playerTag = "Player";
 
+    [SerializeField]
+    protected Collider2D _collider;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(_playerTag))
-        {
             Collect();
-        }
     }
 
     protected virtual void Collect()
