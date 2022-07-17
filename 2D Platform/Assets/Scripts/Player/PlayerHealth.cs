@@ -13,4 +13,13 @@ public class PlayerHealth : HealthBase
     {
         ItemManager.Instance.onHeartCollected -= base.Heal;
     }
+
+    public void SetTint(EntityColorTint tint)
+    {
+        if (_entityColorTint == null)
+        {
+            _entityColorTint = tint;
+            _entityColorTint.Init();
+        }
+    }
 }

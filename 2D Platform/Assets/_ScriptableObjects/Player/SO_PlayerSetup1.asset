@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5674bc0093f8f841a8a91266cae8e82, type: 3}
   m_Name: SO_PlayerSetup1
   m_EditorClassIdentifier: 
+  player: {fileID: 7958707584805317120, guid: cbbf9a5663e8d5843b3f96c53c8fca26, type: 3}
   _speed: 20
   _speedRun: 25
   _jumpForce: 30

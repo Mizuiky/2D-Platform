@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu]
 public class SO_PlayerSetup : ScriptableObject
 {
+    [Header("Player animator")]
+    public PlayerAnimation player;
+
     [Header("Run Setup")]
     public float _speed;
     public float _speedRun;

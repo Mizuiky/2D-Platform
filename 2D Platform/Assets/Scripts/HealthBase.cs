@@ -11,7 +11,7 @@ public class HealthBase : MonoBehaviour
     private SO_Health _health;
 
     [SerializeField]
-    private EntityColorTint _entityColorTint;
+    protected EntityColorTint _entityColorTint;
 
     #endregion
 
@@ -31,12 +31,12 @@ public class HealthBase : MonoBehaviour
 
     #endregion
 
-    private void Awake()
+    void Start()
     {
         Init();
     }
 
-    protected virtual void Init()
+    public virtual void Init()
     {
         _currentLife = _health.startLife;
 

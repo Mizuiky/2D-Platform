@@ -17,7 +17,10 @@ public class Player : MonoBehaviour, IDamageable
     private Transform _groundCheck;
 
     [SerializeField]
-    private HealthBase _health;
+    private PlayerHealth _health;
+
+    [SerializeField]
+    private ParticleSystem _jumpVFX;
 
     #endregion
 
@@ -25,7 +28,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private Rigidbody2D _rb;
 
-    private PlayerAnimation _playerAnimation;
+    private PlayerAnimation _currentPlayer;
 
     private Vector2 _velocity;
     private Vector2 _resetVelocity = Vector2.zero;
@@ -63,12 +66,19 @@ public class Player : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(_groundCheck.position, .25f);
     }
 
+    void Awake()
+    {
+        _currentPlayer = Instantiate(_playerSetup.player, transform);
+        
+        Init();
+    }
+
     void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _playerAnimation = GetComponentInChildren<PlayerAnimation>();
+        _health.SetTint(_currentPlayer.GetComponent<EntityColorTint>());
+        _health.Init();
 
-        Init();
+        _rb = GetComponent<Rigidbody2D>();        
     }
 
     private void Init()
@@ -108,24 +118,25 @@ public class Player : MonoBehaviour, IDamageable
             _velocity.x = _currentSpeed;
             _rb.transform.localScale = new Vector3(1, 1, 1);
 
-            _playerAnimation.CallRun(true);
+            _currentPlayer.CallRun(true);
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             _velocity.x = -_currentSpeed;
             _rb.transform.localScale = new Vector3(-1, 1, 1);
 
-            _playerAnimation.CallRun(true);
+            _currentPlayer.CallRun(true);
         }
         else
         {
             ResetScale();
-            _playerAnimation.CallRun(false);
+            _currentPlayer.CallRun(false);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _isJumping = true;
+            PlayJumpVFX();
         }
 
         //if (_body.velocity.x > 0)
@@ -134,14 +145,19 @@ public class Player : MonoBehaviour, IDamageable
         //    _body.velocity -= _friccion;
     }
 
+    private void PlayJumpVFX()
+    {
+        _jumpVFX?.Play();
+    }
+
     private void SetCurrentSpeed()
     {
         _isRunning = Input.GetKey(KeyCode.Z);
 
         if (_isRunning)
-            _playerAnimation.SetAnimationSpeed(_playerAnimation.RunAnimation);
+            _currentPlayer.SetAnimationSpeed(_currentPlayer.RunAnimation);
         else
-            _playerAnimation.SetAnimationSpeed(1f);
+            _currentPlayer.SetAnimationSpeed(1f);
 
         _currentSpeed = _isRunning ? _playerSetup._speedRun : _playerSetup._speed;
     }
@@ -153,7 +169,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Jump()
     {
-        _playerAnimation.CallJump(_isJumping, _isGrounded);
+        _currentPlayer.CallJump(_isJumping, _isGrounded);
 
         if (_isJumping && _isGrounded)
         {
@@ -161,8 +177,8 @@ public class Player : MonoBehaviour, IDamageable
 
             ResetScale();
 
-            _playerAnimation.KillTweenAnimation(_rb);
-            _playerAnimation.CallJumpScale();
+            _currentPlayer.KillTweenAnimation(_rb);
+            _currentPlayer.CallJumpScale();
 
             _isJumping = false;
         }
@@ -187,12 +203,12 @@ public class Player : MonoBehaviour, IDamageable
 
         _velocity = _resetVelocity;
 
-        _playerAnimation.KillTweenAnimation(_rb);
+        _currentPlayer.KillTweenAnimation(_rb);
 
         ResetScale();
 
-        _playerAnimation.CallRun(false);
-        _playerAnimation.CallDeath();
+        _currentPlayer.CallRun(false);
+        _currentPlayer.CallDeath();
     }
 
     public void OnDamage()
