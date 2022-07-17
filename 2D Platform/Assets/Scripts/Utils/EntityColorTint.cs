@@ -34,24 +34,20 @@ public class EntityColorTint : MonoBehaviour
 
     public void ChangeColor()
     {
-        Debug.Log("change color 1");
         _currentCoroutine = StartCoroutine(ColorTint());
     }
 
     private IEnumerator ColorTint()
     {
-        Debug.Log("change color 2");
         ChangeAllColor(_color);
 
         yield return new WaitForSeconds(.1f);
 
-        Debug.Log("change color 4");
         ChangeAllColor(Color.white);
     }
 
     private void ChangeAllColor(Color color)
     {
-        Debug.Log("change color 3");
         _sprites.ForEach(sprite => sprite.color = color);
     }
 }

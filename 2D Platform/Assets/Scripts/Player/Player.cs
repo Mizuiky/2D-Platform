@@ -136,7 +136,6 @@ public class Player : MonoBehaviour, IDamageable
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _isJumping = true;
-            PlayJumpVFX();
         }
 
         //if (_body.velocity.x > 0)
@@ -181,6 +180,8 @@ public class Player : MonoBehaviour, IDamageable
             _currentPlayer.CallJumpScale();
 
             _isJumping = false;
+
+            PlayJumpVFX();
         }
     }
 
