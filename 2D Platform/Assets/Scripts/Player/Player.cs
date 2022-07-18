@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IDamageable
     private PlayerHealth _health;
 
     [SerializeField]
-    private ParticleSystem _jumpVFX;
+    private Transform _jumpDust;
 
     #endregion
 
@@ -146,7 +146,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void PlayJumpVFX()
     {
-        _jumpVFX?.Play();
+        VFXManager.Instance.PlayVFXByType(VFXType.JUMP, _jumpDust.position);
     }
 
     private void SetCurrentSpeed()

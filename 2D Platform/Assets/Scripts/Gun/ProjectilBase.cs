@@ -9,6 +9,9 @@ public class ProjectilBase : MonoBehaviour
     [SerializeField]
     private SO_Projectil _projectilSetup;
 
+    [SerializeField]
+    private Transform _shotParticle;
+
     #endregion
 
     #region Private Fields
@@ -48,6 +51,8 @@ public class ProjectilBase : MonoBehaviour
         transform.position = shootPosition.position;
 
         _side = playerSide.localScale.x;
+
+        VFXManager.Instance.PlayVFXByType(VFXType.GUN, _shotParticle.position, _shotParticle);
 
         gameObject.SetActive(true);
     }
