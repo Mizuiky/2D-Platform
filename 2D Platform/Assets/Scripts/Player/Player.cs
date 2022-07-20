@@ -52,6 +52,11 @@ public class Player : MonoBehaviour, IDamageable
         get => _rb;
     }
 
+    public float Side
+    {
+        get => transform.localScale.x;
+    }
+
     #endregion
 
     #region Events

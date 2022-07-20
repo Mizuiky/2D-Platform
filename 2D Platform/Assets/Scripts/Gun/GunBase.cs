@@ -7,15 +7,21 @@ public class GunBase : MonoBehaviour
     [Header("Shoot Fields Information")]
 
     [SerializeField]
-    private Transform _playerSideReference;
-    [SerializeField]
     private Transform _shootPosition;
+
     [SerializeField]
     private float _delayBetweenShoots = 5f;
 
     private Coroutine _currentCoroutine;
 
     private bool _isShooting;
+
+    private Player _playerReference;
+
+    private void Start()
+    {
+        _playerReference = FindObjectOfType<Player>();
+    }
 
     private void Update()
     {
@@ -53,7 +59,7 @@ public class GunBase : MonoBehaviour
             var projectil = obj.GetComponent<ProjectilBase>();
 
             if (projectil != null)
-                projectil.Init(_shootPosition, _playerSideReference);
+                projectil.Init(_shootPosition, _playerReference.Side);
         }              
     }
 }

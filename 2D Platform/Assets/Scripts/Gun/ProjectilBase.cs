@@ -46,11 +46,11 @@ public class ProjectilBase : MonoBehaviour
         Deactivate();
     }
 
-    public void Init(Transform shootPosition, Transform playerSide)
+    public void Init(Transform shootPosition, float playerSide)
     {
         transform.position = shootPosition.position;
 
-        _side = playerSide.localScale.x;
+        _side = playerSide;
 
         VFXManager.Instance.PlayVFXByType(VFXType.GUN, _shotParticle.position, _shotParticle);
 
