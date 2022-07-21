@@ -1,4 +1,5 @@
 using Core.Singleton;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,8 @@ public class GameManager : Singleton<GameManager>
 
     private Player _currentPlayer;
 
+    public static event Action<Transform> OnFollowPlayer;
+
     private void Awake()
     {
         _currentPlayer = FindObjectOfType<Player>();
@@ -46,7 +49,7 @@ public class GameManager : Singleton<GameManager>
     public void Init()
     {
         SpawnPlayer();
-        AudioManager.Instance.PlayLevelAudio(Level.PLANET);
+        //AudioManager.Instance.PlayLevelAudio(Level.PLANET);
     }
 
     private void SpawnPlayer()
@@ -58,6 +61,14 @@ public class GameManager : Singleton<GameManager>
 
         _currentPlayer.Health.SetTint(_currentPlayerAnimator.GetComponent<EntityColorTint>());
         _currentPlayer.Health.Init();
+
+        NotifyCamera();
+    }
+
+    public void NotifyCamera()
+    {
+        OnFollowPlayer?.Invoke(_currentPlayer.transform);
+        AudioManager.Instance.PlayLevelAudio(Level.PLANET);
     }
 }
 
@@ -66,3 +77,4 @@ public enum Level
     PLANET,
     UNDERGROUND,
 }
+
