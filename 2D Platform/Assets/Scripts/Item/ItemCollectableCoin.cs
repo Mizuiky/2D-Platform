@@ -27,6 +27,8 @@ public class ItemCollectableCoin : ItemCollectableBase
 
     protected override void OnCollect()
     {
+        AudioManager.Instance.PlayClipByType(SFXType.Coin);
+
         _coinGraph.SetActive(false);
 
         Invoke("HideOnCollect", _timeToHide);

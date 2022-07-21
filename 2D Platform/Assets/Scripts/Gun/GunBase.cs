@@ -59,7 +59,11 @@ public class GunBase : MonoBehaviour
             var projectil = obj.GetComponent<ProjectilBase>();
 
             if (projectil != null)
+            {
                 projectil.Init(_shootPosition, _playerReference.Side);
+                AudioManager.Instance.PlayClipByType(SFXType.Shoot);
+            }
+               
         }              
     }
 }

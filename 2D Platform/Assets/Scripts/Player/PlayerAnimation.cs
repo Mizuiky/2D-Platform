@@ -56,4 +56,9 @@ public class PlayerAnimation : AnimationBase
     {
         _player.Rb.transform.DOScaleY(_animation._landScaleY, _animation._landScaleDuration).SetLoops(2, LoopType.Yoyo);
     }
+
+    public void CallWalkSound()
+    {
+        AudioManager.Instance.PlayClipByType(SFXType.Walk);
+    }
 }

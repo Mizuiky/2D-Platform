@@ -28,7 +28,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private Rigidbody2D _rb;
 
-    private PlayerAnimation _currentPlayer;
+    private PlayerAnimation _playerAnimation;
 
     private Vector2 _velocity;
     private Vector2 _resetVelocity = Vector2.zero;
@@ -57,6 +57,16 @@ public class Player : MonoBehaviour, IDamageable
         get => transform.localScale.x;
     }
 
+    public PlayerHealth Health
+    {
+        get => _health;
+    }
+
+    public PlayerAnimation PlayerAnimation
+    {
+        set => _playerAnimation = value;
+    }
+
     #endregion
 
     #region Events
@@ -72,17 +82,12 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     void Awake()
-    {
-        _currentPlayer = Instantiate(_playerSetup.player, transform);
-        
+    {     
         Init();
     }
 
     void Start()
     {
-        _health.SetTint(_currentPlayer.GetComponent<EntityColorTint>());
-        _health.Init();
-
         _rb = GetComponent<Rigidbody2D>();        
     }
 
@@ -123,19 +128,19 @@ public class Player : MonoBehaviour, IDamageable
             _velocity.x = _currentSpeed;
             _rb.transform.localScale = new Vector3(1, 1, 1);
 
-            _currentPlayer.CallRun(true);
+            _playerAnimation.CallRun(true);
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             _velocity.x = -_currentSpeed;
             _rb.transform.localScale = new Vector3(-1, 1, 1);
 
-            _currentPlayer.CallRun(true);
+            _playerAnimation.CallRun(true);
         }
         else
         {
             ResetScale();
-            _currentPlayer.CallRun(false);
+            _playerAnimation.CallRun(false);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -159,9 +164,9 @@ public class Player : MonoBehaviour, IDamageable
         _isRunning = Input.GetKey(KeyCode.Z);
 
         if (_isRunning)
-            _currentPlayer.SetAnimationSpeed(_currentPlayer.RunAnimation);
+            _playerAnimation.SetAnimationSpeed(_playerAnimation.RunAnimation);
         else
-            _currentPlayer.SetAnimationSpeed(1f);
+            _playerAnimation.SetAnimationSpeed(1f);
 
         _currentSpeed = _isRunning ? _playerSetup._speedRun : _playerSetup._speed;
     }
@@ -173,7 +178,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Jump()
     {
-        _currentPlayer.CallJump(_isJumping, _isGrounded);
+        _playerAnimation.CallJump(_isJumping, _isGrounded);
 
         if (_isJumping && _isGrounded)
         {
@@ -181,8 +186,8 @@ public class Player : MonoBehaviour, IDamageable
 
             ResetScale();
 
-            _currentPlayer.KillTweenAnimation(_rb);
-            _currentPlayer.CallJumpScale();
+            _playerAnimation.KillTweenAnimation(_rb);
+            _playerAnimation.CallJumpScale();
 
             _isJumping = false;
 
@@ -209,12 +214,12 @@ public class Player : MonoBehaviour, IDamageable
 
         _velocity = _resetVelocity;
 
-        _currentPlayer.KillTweenAnimation(_rb);
+        _playerAnimation.KillTweenAnimation(_rb);
 
         ResetScale();
 
-        _currentPlayer.CallRun(false);
-        _currentPlayer.CallDeath();
+        _playerAnimation.CallRun(false);
+        _playerAnimation.CallDeath();
     }
 
     public void OnDamage()
