@@ -21,24 +21,24 @@ This project is part of my learnings in the Profission Game Design and Unity Dev
 <h2 align="center">Project Working</h2> 
 
 <p align="center">
-<img src="2D Platform\Assets\ImageVideo\Menu.gif" width="230"> 
+<img src="2D Platform\Assets\ImageVideo\Menu.gif" width="300"> 
 <figcaption align = "center"><b>Menu</b></figcaption>
 </p>
 
 <p align="center">
-<img src="2D Platform\Assets\ImageVideo\Walk.gif" width="230"> 
+<img src="2D Platform\Assets\ImageVideo\Walk.gif" width="300"> 
 <figcaption align = "center"><b>Player walk and jump with dust particle, coin collection with particles</b></figcaption>
 </br>
 </P>
 
 <p align="center">
-<img src="2D Platform\Assets\ImageVideo\Pause.gif" width="230"> 
+<img src="2D Platform\Assets\ImageVideo\Pause.gif" width="300"> 
 <figcaption align = "center"><b>Pause Menu</b></figcaption>
 </br>
 </p>
 
 <p align="center">
-<img src="2D Platform\Assets\ImageVideo\Enemy.gif" width="230"> 
+<img src="2D Platform\Assets\ImageVideo\Enemy.gif" width="300"> 
 <figcaption align = "center"><b>Player Health</b></figcaption>
 </p>
 
@@ -56,6 +56,7 @@ https://assetstore.unity.com/packages/audio/musicsunset-soundtrack-microgames-ad
 Effects
 * Fantasy Sfx
 https://assetstore.unity.com/packages/audio/sound-fx/fantasy-sfx-32833
+</br>
 
 2. Images, UI and some animations:
 * Ebac Project package
