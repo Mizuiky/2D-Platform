@@ -54,17 +54,17 @@ https://assetstore.unity.com/packages/audio/musicsunset-soundtrack-microgames-ad
 
 
 Effects
-* Fantasy Sfx
+* Fantasy Sfx </br>
 https://assetstore.unity.com/packages/audio/sound-fx/fantasy-sfx-32833
 </br>
 
 2. Images, UI and some animations:
-* Ebac Project package
+Ebac Project package
 
-* GUI PRO Kit - Simple Casual
+* GUI PRO Kit - Simple Casual </br>
 https://assetstore.unity.com/packages/2d/gui/icons/gui-pro-kit-simple-casual-203399
 
-* DOTween (HOTween v2)
+* DOTween (HOTween v2) </br>
 https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676
 
 
