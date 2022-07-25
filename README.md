@@ -4,7 +4,6 @@ This project is part of my learnings in the Profission Game Design and Unity Dev
 
 <h2 align="center">Implemented Features</h2> 
 
-<p align="center">
 ### Mechanics
 * Player can walk for both 2D sides
 * Player can jump
