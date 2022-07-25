@@ -11,11 +11,16 @@ This project is part of my learnings in the Profession Game Design and Unity Dev
 * Enemy can hurt player
 
 
-**Systems**
+**Systems and Scripts**
 * Spawner using Pooling pattern to spawn player bullets
 * Audio manager using Single Pattern to add music into the game
 * VFXManager using Singleton Pattern to add particles into the game
 * ItemManager using Singleton Pattern to be responsible for the game itens like coins
+* Uncoupled Player health system, tint player when on damage
+* Uncoupled Player animation system
+* Scriptable objects for Itens and Bullet
+* Scriptable Objects for player settings
+
 </p>
 
 **<h2 align="center">Project Working</h2>**
