@@ -41,7 +41,7 @@ This project is part of my learnings in the Profession Game Design and Unity Dev
 
 <br>
 
-**<h2 align="center">Assets Used</h2>**
+**<h2 align="center">Used Assets </h2>**
 
 
 **Audio:**
@@ -57,7 +57,7 @@ https://assetstore.unity.com/packages/audio/sound-fx/fantasy-sfx-32833
 </br>
 
 **Images, UI and some animations**
-Ebac Project package
+* Ebac Project package
 
 * GUI PRO Kit - Simple Casual </br>
 https://assetstore.unity.com/packages/2d/gui/icons/gui-pro-kit-simple-casual-203399
