@@ -14,8 +14,15 @@ public class MenuButtonsManager : MonoBehaviour
     [SerializeField]
     private Ease ease = Ease.OutBack;
 
-    private void OnEnable()
+    private void Start()
     {
+        Init();
+    }
+
+    public void Init()
+    {
+        ResetButtonScale();
+
         HideButton();
         ShowButtons();
     }
@@ -31,6 +38,14 @@ public class MenuButtonsManager : MonoBehaviour
         {      
             btn.transform.localScale = Vector3.zero;
             btn.SetActive(false);
+        }
+    }
+
+    private void ResetButtonScale()
+    {
+        foreach (GameObject btn in buttons)
+        {
+            btn.transform.localScale = Vector3.one;
         }
     }
 
