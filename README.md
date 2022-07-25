@@ -20,29 +20,31 @@ This project is part of my learnings in the Profission Game Design and Unity Dev
 
 <h2 align="center">Project Working</h2> 
 
-<p align="center">
-<img src="2D Platform\Assets\ImageVideo\Menu.gif" width="300"> 
-<figcaption align = "center"><b>Menu</b></figcaption>
-</p>
+<figure align = "center">
+  <img src="2D Platform\Assets\ImageVideo\Menu.gif" width="300">
+  </br>
+  <figcaption>Game Menu</figcaption>
+</figure>
 
-<p align="center">
-<img src="2D Platform\Assets\ImageVideo\Walk.gif" width="300"> 
-<figcaption align = "center"><b>Player walk and jump with dust particle, coin collection with particles</b></figcaption>
-</br>
-</P>
+<figure align = "center">
+ <img src="2D Platform\Assets\ImageVideo\Walk.gif" width="300"> 
+  </br>
+  <figcaption>Player walk and jump with dust particle, coin collection with particles</figcaption>
+</figure>
 
-<p align="center">
-<img src="2D Platform\Assets\ImageVideo\Pause.gif" width="300"> 
-<figcaption align = "center"><b>Pause Menu</b></figcaption>
-</br>
-</p>
+<figure align = "center">
+ <img src="2D Platform\Assets\ImageVideo\Pause.gif" width="300">
+  <figcaption>Pause Menu</figcaption>
+</figure>
 
-<p align="center">
-<img src="2D Platform\Assets\ImageVideo\Enemy.gif" width="300"> 
-<figcaption align = "center"><b>Player Health</b></figcaption>
-</p>
+<figure align = "center">
+ <img src="2D Platform\Assets\ImageVideo\Enemy.gif" width="300"> 
+  </br>
+  <figcaption>Player Health</figcaption>
+</figure>
 
 <br>
+
 <h2 align="center">Assets Used</h2>
 
 
