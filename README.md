@@ -21,24 +21,24 @@ This project is part of my learnings in the Profession Game Design and Unity Dev
 **<h2 align="center">Project Working</h2>**
 
 <figure>
-  <img src="2D Platform\Assets\ImageVideo\Menu.gif" width="300">
+  <img src="2D Platform\Assets\ImageVideo\Menu.gif" width="350">
   </br>
   <figcaption>Game Menu</figcaption>
 </figure>
 
 <figure>
- <img src="2D Platform\Assets\ImageVideo\Walk.gif" width="300"> 
+ <img src="2D Platform\Assets\ImageVideo\Walk.gif" width="350"> 
   </br>
   <figcaption>Player walk and jump with dust particle, coin collection with particles</figcaption>
 </figure>
 
 <figure>
- <img src="2D Platform\Assets\ImageVideo\Pause.gif" width="300">
+ <img src="2D Platform\Assets\ImageVideo\Pause.gif" width="350">
   <figcaption>Pause Menu</figcaption>
 </figure>
 
 <figure>
- <img src="2D Platform\Assets\ImageVideo\Enemy.gif" width="300"> 
+ <img src="2D Platform\Assets\ImageVideo\Enemy.gif" width="350"> 
   </br>
   <figcaption>Player Health</figcaption>
 </figure>
