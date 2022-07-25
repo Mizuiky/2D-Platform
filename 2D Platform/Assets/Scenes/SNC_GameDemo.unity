@@ -2356,7 +2356,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437044484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -246.4, y: 0.12014866, z: -9.623563}
+  m_LocalPosition: {x: -283.45688, y: 0, z: -9.628244}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10164,7 +10164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944640453}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -246.4, y: 0.12014866, z: -9.623563}
+  m_LocalPosition: {x: -283.45688, y: 0, z: -9.628244}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 878224515}
@@ -10185,7 +10185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentCam: {fileID: 1944640454}
-  _originalPosition: {fileID: 1944640455}
+  _originalPosition: {fileID: 437044487}
 --- !u!1 &1946833261
 GameObject:
   m_ObjectHideFlags: 0

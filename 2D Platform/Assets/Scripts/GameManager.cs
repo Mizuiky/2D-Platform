@@ -49,7 +49,7 @@ public class GameManager : Singleton<GameManager>
     public void Init()
     {
         SpawnPlayer();
-        //AudioManager.Instance.PlayLevelAudio(Level.PLANET);
+        AudioManager.Instance.PlayLevelAudio(Level.PLANET);
     }
 
     private void SpawnPlayer()
@@ -68,7 +68,7 @@ public class GameManager : Singleton<GameManager>
     public void NotifyCamera()
     {
         OnFollowPlayer?.Invoke(_currentPlayer.transform);
-        AudioManager.Instance.PlayLevelAudio(Level.PLANET);
+        //AudioManager.Instance.PlayLevelAudio(Level.PLANET);
     }
 }
 
