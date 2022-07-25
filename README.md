@@ -1,6 +1,6 @@
 **<h1 align="center"> Platform 2D Project </h1>**
 
-This project is part of my learnings in the Profission Game Design and Unity Developer course at EBAC, made to improve my Unity skills in 2D projects.
+This project is part of my learnings in the Profession Game Design and Unity Developer course at EBAC, made to improve my Unity skills in 2D projects.
 
 **<h2 align="center">Implemented Features</h2>**
 
@@ -20,30 +20,28 @@ This project is part of my learnings in the Profission Game Design and Unity Dev
 
 **<h2 align="center">Project Working</h2>**
 
-<p align = "center">
-<figure align = "center">
+<figure>
   <img src="2D Platform\Assets\ImageVideo\Menu.gif" width="300">
   </br>
   <figcaption>Game Menu</figcaption>
 </figure>
 
-<figure align = "center">
+<figure>
  <img src="2D Platform\Assets\ImageVideo\Walk.gif" width="300"> 
   </br>
   <figcaption>Player walk and jump with dust particle, coin collection with particles</figcaption>
 </figure>
 
-<figure align = "center">
+<figure>
  <img src="2D Platform\Assets\ImageVideo\Pause.gif" width="300">
   <figcaption>Pause Menu</figcaption>
 </figure>
 
-<figure align = "center">
+<figure>
  <img src="2D Platform\Assets\ImageVideo\Enemy.gif" width="300"> 
   </br>
   <figcaption>Player Health</figcaption>
 </figure>
-</P>
 
 <br>
 
