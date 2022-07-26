@@ -61,7 +61,7 @@ Effects
 https://assetstore.unity.com/packages/audio/sound-fx/fantasy-sfx-32833
 </br>
 
-* Opengameart
+* Opengameart </br>
 https://opengameart.org/content/jump-landing-sound
 https://opengameart.org/content/sound-effects-pack-2
 
