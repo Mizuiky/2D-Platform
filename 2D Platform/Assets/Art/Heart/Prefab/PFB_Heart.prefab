@@ -195,4 +195,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTag: Player
+  _collider: {fileID: 1673187583279698658}
   amountToHeal: {fileID: 11400000, guid: e064df660210ad642981074f4747af1e, type: 2}
