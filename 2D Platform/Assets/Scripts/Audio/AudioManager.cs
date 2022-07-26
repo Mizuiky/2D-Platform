@@ -96,9 +96,9 @@ public enum SFXType
 {
     Walk,
     Jump,
+    Land,
     Shoot,
     Coin,
-    Level1,
     Menu
 }
 

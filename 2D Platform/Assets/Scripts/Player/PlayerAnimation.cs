@@ -34,6 +34,7 @@ public class PlayerAnimation : AnimationBase
 
     public void CallJumpScale()
     {
+        AudioManager.Instance.PlayClipByType(SFXType.Jump);
         HandleJumpScale();
     }
 
@@ -54,6 +55,7 @@ public class PlayerAnimation : AnimationBase
 
     private void HandleLandScale()
     {
+        AudioManager.Instance.PlayClipByType(SFXType.Land);
         _player.Rb.transform.DOScaleY(_animation._landScaleY, _animation._landScaleDuration).SetLoops(2, LoopType.Yoyo);
     }
 

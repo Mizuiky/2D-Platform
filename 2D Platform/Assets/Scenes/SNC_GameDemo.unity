@@ -5487,7 +5487,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 49.7984, y: 4}
+  m_AnchoredPosition: {x: 49.79834, y: 4}
   m_SizeDelta: {x: -1428.0315, y: -379.189}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040435705
@@ -8674,10 +8674,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c71a1656ec801453da6b0fc7884f77fe, type: 3}
   - type: 0
     clip: {fileID: 8300000, guid: 23684c2373aa34787b0d7b3349bdd2e6, type: 3}
-  - type: 3
+  - type: 4
     clip: {fileID: 8300000, guid: a3260b6f2f81b443c9a50a4222b21f64, type: 3}
-  - type: 2
+  - type: 3
     clip: {fileID: 8300000, guid: de812cfb519929c4aad9d296f655c81d, type: 3}
+  - type: 1
+    clip: {fileID: 8300000, guid: 5b89705328c85de4d88a6a455861c176, type: 3}
+  - type: 2
+    clip: {fileID: 8300000, guid: 795538b463417214992fa714a4ca27ad, type: 3}
   audioSource:
   - {fileID: 496782646}
   - {fileID: 1342609521}
@@ -11338,7 +11342,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 49.7984, y: 4}
+  m_AnchoredPosition: {x: 49.79834, y: 4}
   m_SizeDelta: {x: -1428.0315, y: -379.189}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2013494997
